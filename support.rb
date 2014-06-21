@@ -7,7 +7,6 @@ class Supporter
   def self.get_vmname()
     here = Dir::pwd
     name = here.split("/").last
-    p here, name
     name
   end
 
