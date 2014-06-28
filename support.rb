@@ -1,5 +1,6 @@
 $LOAD_PATH << File.dirname(__FILE__)
 require 'ipsupport'
+require 'boxsupport'
 
 module VagrantSupport
 
@@ -14,13 +15,13 @@ class Supporter
     IpSupport.new(conf).load_ipaddr(vmname)
   end
 
-  def self.get_boxurl(boxname)
+  def self.get_boxurl(boxname, conf)
+    BoxSupport.new(conf).load_boxurl(boxname)
   end
 
   def conf_exist?(path)
     File.exist?(path)
   end
-
 
 end
 
