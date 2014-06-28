@@ -1,10 +1,10 @@
-module VagrantSupport
+module VagDict
 
-class IpSupport
-  def initialize(conf_path)
-    @conf_file = conf_path
-    @conf      = Configure.new(conf_path)
-    @ip_map    = @conf.load
+class IpConsult
+  def initialize(dict_path)
+    @dict_file = dict_path
+    @dict      = IpDictionary.new(dict_path)
+    @ip_map    = @dict.load
   end
 
   def load_ipaddr(vmname)
@@ -14,7 +14,7 @@ class IpSupport
     @ip_map[vmname]
   end
 
-  # generate ipaddr and write conf
+  # generate ipaddr and write Dictionary
   # return generated ipaddr
   def generate_ipaddr(vmname)
     new_ip = ""
@@ -26,11 +26,11 @@ class IpSupport
         break
       end
     end
-    @conf.save(vmname, new_ip)
+    @dict.save(vmname, new_ip)
     new_ip
   end
 
-  class Configure
+  class IpDictionary
     def initialize(path)
       @path = path
     end

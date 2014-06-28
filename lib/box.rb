@@ -1,21 +1,21 @@
-module VagrantSupport
+module VagDict
 
-class BoxSupport
-  def initialize(conf_path)
-    @conf_file = conf_path
-    @conf      = Configure.new(conf_path)
-    @box_map   = @conf.load
+class BoxConsult
+  def initialize(dict_path)
+    @dict_file = dict_path
+    @dict      = BoxDictionary.new(dict_path)
+    @box_map   = @dict.load
   end
 
   def load_boxurl(boxname)
     if @box_map[boxname].nil?
-      puts "not found box url -> boxname:#{boxname} conf_file:#{@conf_file}"
+      puts "not found box url -> boxname:#{boxname} dict_file:#{@dict_file}"
       exit
     end
     @box_map[boxname]
   end
 
-  class Configure
+  class BoxDictionary
     def initialize(path)
       @path = path
     end
@@ -32,6 +32,7 @@ class BoxSupport
     end
 
   end
+
 
 end
 
