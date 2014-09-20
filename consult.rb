@@ -1,6 +1,7 @@
 $LOAD_PATH << File.dirname(__FILE__)
 require 'lib/ip'
 require 'lib/box'
+require 'lib/port'
 
 module VagDict
 
@@ -17,6 +18,10 @@ class Consult
 
   def self.get_boxurl(boxname, dict)
     BoxConsult.new(dict).load_boxurl(boxname)
+  end
+
+  def self.get_forwardport(ipaddr, base=nil)
+    PortConsult.new(base).generate_forwardport(ipaddr)
   end
 
   def conf_exist?(path)
